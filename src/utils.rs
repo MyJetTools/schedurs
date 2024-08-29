@@ -18,7 +18,7 @@ mod tests {
     fn test_get_week_schedule_time_index() {
         let wd = Weekday::Mon;
         let time = NaiveTime::from_hms(12, 0, 0);
-        assert_eq!(get_week_schedule_time_index(wd, time), 1200000);
+        assert_eq!(get_week_schedule_time_index(wd, time), 120000);
     }
 
     #[test]

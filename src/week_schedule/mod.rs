@@ -5,6 +5,7 @@ use chrono::{NaiveTime, Weekday};
 use std::ops::Bound::Excluded;
 use std::ops::Bound::Included;
 
+#[derive(Debug, Clone)]
 pub struct WeekSchedule<T> {
     pub events: BTreeMap<u32, Vec<T>>,
 }
@@ -54,8 +55,8 @@ impl<T: Clone> WeekSchedule<T> {
                 .collect::<Vec<_>>();
         }
 
-        let last_indx = self.events.last_key_value().unwrap().0.clone();
-        let first_indx = self.events.first_key_value().unwrap().0.clone();
+        let last_indx = *self.events.last_key_value().unwrap().0;
+        let first_indx = *self.events.first_key_value().unwrap().0;
 
         let mut from_2_last = self
             .events
@@ -73,7 +74,7 @@ impl<T: Clone> WeekSchedule<T> {
 
         from_2_last.extend(first_2_to);
 
-        return from_2_last;
+        from_2_last
     }
 }
 
